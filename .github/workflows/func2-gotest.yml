@@ -23,6 +23,7 @@ jobs:
           golangci-version: latest
           go-test-flags: "./... -v -covermode=atomic -coverprofile=coverprofile.out"
           golangci-working-directory: ./func1
+          # go-test-working-directory: ./func2
 
   notify:
     runs-on: ubuntu-latest
