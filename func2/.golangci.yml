@@ -1,0 +1,41 @@
+run:
+  tests: false
+  skip-dirs:
+    - docs
+    - cmd/generate
+  modules-download-mode: readonly
+  go: '1.18'
+
+linters:
+  disable-all: true
+  enable:
+    - typecheck
+    - errcheck
+    - ineffassign
+    - govet
+    - staticcheck
+    - gofmt
+    - cyclop
+    - asciicheck
+    - bidichk
+    - bodyclose
+    - contextcheck
+    - dupl
+    - errchkjson
+    - errorlint
+    - execinquery
+    - exhaustive
+    - exportloopref
+    - funlen
+    - gocognit
+    - gosec
+    - loggercheck
+    - makezero
+    - noctx
+    - reassign
+    - rowserrcheck
+    - sqlclosecheck
+    - nilerr
+    - durationcheck
+    - asasalint
+    - forbidigo

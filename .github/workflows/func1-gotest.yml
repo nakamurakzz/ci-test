@@ -1,4 +1,4 @@
-name: go-test-ci
+name: func1-go-test-ci
 
 on: [push]
 
@@ -22,6 +22,7 @@ jobs:
           go-vet: true
           golangci-version: latest
           go-test-flags: "./... -v -covermode=atomic -coverprofile=coverprofile.out"
+          golangci-working-directory: ./func1
 
   notify:
     runs-on: ubuntu-latest
