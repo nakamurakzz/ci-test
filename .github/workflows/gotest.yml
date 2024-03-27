@@ -1,0 +1,48 @@
+name: go-test-ci
+
+on: [push]
+
+env:
+  SLACK_USERNAME: DeployBot
+  SLACK_ICON: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
+  # SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+  # DATABASE_URL: ${{ secrets.DATABASE_URL }}
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: pipeline
+        uses: trapajim/go-pipeline-action@v1
+        with:
+          go-version: "1.20.1"
+          go-vet: true
+          golangci-version: latest
+          go-test-flags: "./... -v -covermode=atomic -coverprofile=coverprofile.out"
+
+  notify:
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # - name: Slack Notification on Success
+      #   uses: rtCamp/action-slack-notify@v2
+      #   if: ${{ success() }}
+      #   env:
+      #     SLACK_TITLE: Test / Success
+      #     SLACK_COLOR: good
+      #     SLACK_MESSAGE: Test Success 🚀
+
+      # - name: Slack Notification on Failure
+      #   uses: rtCamp/action-slack-notify@v2
+      #   if: ${{ failure() }}
+      #   env:
+      #     SLACK_TITLE: Test / Failure
+      #     SLACK_COLOR: danger
+      #     SLACK_MESSAGE: Test failed ❌
